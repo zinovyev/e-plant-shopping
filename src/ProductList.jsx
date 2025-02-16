@@ -259,6 +259,20 @@ function ProductList() {
     ));
   }
 
+  const addToCartButton = (plant) => {
+    let buttonClass = 'product-button';
+    let buttonDisabled = false;
+    if (addedToCart[plant.name]) {
+      buttonClass += ' added-to-cart';
+      buttonDisabled = true;
+    }
+    return (
+      <button className={buttonClass} disabled={buttonDisabled} onClick={() => handleAddToCart(plant)}>
+        Add to Cart
+      </button>
+    );
+  }
+
   return (
     <div>
       <div className="navbar" style={styleObj}>
@@ -298,7 +312,7 @@ function ProductList() {
                     <p className="product-price">
                       {plant.cost}
                     </p>
-                    <button className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                    {addToCartButton(plant)}
                   </div>
                 ))}
               </div>
